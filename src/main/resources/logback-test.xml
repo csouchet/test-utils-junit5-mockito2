@@ -1,0 +1,21 @@
+<configuration scan="true" debug="true">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder>
+			<pattern>|%d{HH:mm:ss.SSS}|%thread|%-5level|%logger{15}| %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.csouchet" level="DEBUG" />
+	<logger name="com.bonitasoft" level="DEBUG" />
+
+	<logger name="org.hibernate" level="WARN" />
+	<logger name="org.hibernate.SQL" level="INFO" />
+	<!-- <logger name="org.hibernate.type" level="TRACE" /> -->
+	<logger name="org.springframework" level="WARN" />
+	<logger name="liquibase" level="WARN" />
+
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
