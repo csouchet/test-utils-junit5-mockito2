@@ -14,10 +14,16 @@
 		<!-- Plugins -->
 		<maven.compiler.version>3.8.0</maven.compiler.version>
 		<maven.surefire.version>2.22.1</maven.surefire.version>
+		<maven.javadoc.version>3.0.1</maven.javadoc.version>
+
+		<!-- Lombok -->
+		<lombok.version>1.18.4</lombok.version>
 
 		<!-- Logs -->
 		<slf4j.version>1.7.25</slf4j.version>
 		<logback.version>1.2.3</logback.version>
+
+		<commons-lang3.version>3.8.1</commons-lang3.version>
 
 		<!-- Database -->
 		<h2.version>1.4.197</h2.version>
@@ -27,11 +33,19 @@
 		<junit.platform.version>1.3.2</junit.platform.version>
 		<mockito.version>2.23.4</mockito.version>
 		<assertj.version>3.11.1</assertj.version>
-		<awaitility.version>3.1.3</awaitility.version>
+		<awaitility.version>3.1.5</awaitility.version>
 		<dbsetup.version>2.1.0</dbsetup.version>
 	</properties>
 
 	<dependencies>
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<!-- Log -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -42,6 +56,12 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
 		</dependency>
 
 		<!-- Test -->
@@ -111,23 +131,25 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven.javadoc.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven.surefire.version}</version>
-				<configuration>
-					<argLine>
-						--illegal-access=permit
-					</argLine>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>${maven.surefire.version}</version>
-				<configuration>
-					<argLine>
-						--illegal-access=permit
-					</argLine>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
